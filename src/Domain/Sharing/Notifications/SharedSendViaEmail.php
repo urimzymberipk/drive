@@ -37,6 +37,6 @@ class SharedSendViaEmail extends Notification
             ->greeting(__t('hello'))
             ->line(__t('shared_link_email_user', ['user' => $this->user->settings->name, 'email' => $this->user->email]))
             ->action(__t('shared_link_email_link'), url('/share', ['token' => $this->token]))
-            ->salutation(__t('shared_link_email_salutation', ['app_name' => get_settings('app_title') ?? 'VueFileManager']));
+            ->salutation(__t('shared_link_email_salutation', ['app_name' => get_settings('app_title') ?? 'FreeDrive']));
     }
 }

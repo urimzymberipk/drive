@@ -3990,9 +3990,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -4020,14 +4018,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "EdBitSaveToBlockChainPopup",
@@ -4040,24 +4030,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)(['isDarkMode'])),
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['isDarkMode'])),
   methods: {
-    logIn: function logIn() {
-      var _this = this;
-
-      var url = "https://api.edbit.io/auth/login";
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, this.obj).then(function (res) {
-        _this.$store.commit('SET_AUTHENTICATED_USER_DETAILS', res.data.accessToken);
-
-        _this.closeDialog();
-      })["catch"](function (error) {
-        _this.$notify({
-          title: 'Error',
-          type: 'error',
-          message: error.data
-        });
-      })["finally"](function () {});
-    },
     closeDialog: function closeDialog() {
       this.$emit('closeDialog');
     }
@@ -4181,9 +4155,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _UI_Entries_ThumbnailItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../UI/Entries/ThumbnailItem */ "./resources/js/components/UI/Entries/ThumbnailItem.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UI_Entries_ThumbnailItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../UI/Entries/ThumbnailItem */ "./resources/js/components/UI/Entries/ThumbnailItem.vue");
 /* harmony import */ var _UI_Others_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../UI/Others/Spinner */ "./resources/js/components/UI/Others/Spinner.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -4252,15 +4226,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+ // import ThumbnailItem from './ThumbnailItem'
 
 
 
+ // import Spinner from "../FilesView/Spinner"
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SaveToBlockChain',
   props: ['dialogVisible', 'selectedPdf'],
   components: {
-    ThumbnailItem: _UI_Entries_ThumbnailItem__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ThumbnailItem: _UI_Entries_ThumbnailItem__WEBPACK_IMPORTED_MODULE_1__["default"],
     Spinner: _UI_Others_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)(['getAuthenticatedUserDetails', 'isDarkMode', 'entries'])), {}, {
@@ -4289,14 +4265,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       this.showSpinner = true;
-      var foldersUrl = "https://api.edbit.io/dir/getFolders";
-      var headers = {
-        'Authorization': 'Bearer ' + this.getAuthenticatedUserDetails
+      var foldersUrl = "/api/blockchain/get-folders";
+      var headers = {// 'Authorization': 'Bearer ' + this.getAuthenticatedUserDetails,
       };
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get(foldersUrl, {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(foldersUrl, {
         headers: headers
       }).then(function (res) {
-        _this.folders = res.data.folders;
+        _this.folders = res.data;
       })["catch"](function (error) {
         _this.$store.commit('SET_AUTHENTICATED_USER_DETAILS', null);
 
@@ -4318,7 +4293,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.showSpinner = true;
         this.showP = true;
         var base_url = window.location.origin;
-        var url = base_url + '/api/save-file-blockchain';
+        var url = base_url + '/api/blockchain/save-file-blockchain';
         var payload = {
           type: this.selectedCertificate,
           folderName: this.selectedFolder,
@@ -4327,28 +4302,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var headers = {
           'Authorization': 'Bearer ' + this.getAuthenticatedUserDetails
         };
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, payload, {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, payload, {
           headers: headers
         }).then(function (res) {
-          console.log(res.data);
-          console.log(_this2.entries);
-          _this2.showSpinner = false;
-          _this2.showDone = true;
-
           _this2.$store.dispatch('getFolder', {
             page: 1,
             id: _this2.$route.params.id
-          }); // this.entries.find((item) => {
-          //   if (item.data.id === res.data.id) {
-          //     item.data = res.data
-          //   }
-          // })
+          });
 
-        })["catch"](function (error) {// this.$notify({
-          //   title: 'Error',
-          //   type: 'error',
-          //   message: error.data
-          // });
+          _this2.showSpinner = false;
+          _this2.showDone = true;
+        })["catch"](function (error) {
+          _this2.$notify({
+            title: 'Error',
+            type: 'error',
+            message: error.data
+          });
         })["finally"](function () {
           _this2.showSpinner = false;
           _this2.showDone = true; // this.closeDialog()
@@ -10654,18 +10623,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return _this.isScaledDown = false;
     });
     this.$root.$on('openBlockChainPopup', function (item) {
-      if (_this.getAuthenticatedUserDetails) {
-        _this.selectedPdf = item;
-        _this.showSaveToBlockChainDialog = true;
-      } else {
-        _this.$notify({
-          title: 'Info',
-          type: 'info',
-          message: 'You need to login to perform this action!'
-        });
-
-        _this.showEdBitLoginModal = true;
-      }
+      // if(this.getAuthenticatedUserDetails){
+      _this.selectedPdf = item;
+      _this.showSaveToBlockChainDialog = true; // }else{
+      //   this.$notify({
+      //     title: 'Info',
+      //     type: 'info',
+      //     message: 'You need to login to perform this action!'
+      //   });
+      //   this.showEdBitLoginModal = true
+      // }
     });
   }
 });
@@ -26775,7 +26742,7 @@ var render = function () {
     "el-dialog",
     {
       attrs: {
-        title: "Log In to EdBit",
+        title: "Contact your admin",
         visible: _vm.dialogVisible,
         width: "30%",
         "custom-class": _vm.isDarkMode
@@ -26791,49 +26758,24 @@ var render = function () {
     },
     [
       _c("div", { staticClass: "actualContent" }, [
-        _c("div", { staticClass: "inputsWrapper" }, [
-          _c(
-            "div",
-            { staticClass: "email flex_1" },
-            [
-              _c("el-input", {
-                attrs: { placeholder: "Email" },
-                model: {
-                  value: _vm.obj.email,
-                  callback: function ($$v) {
-                    _vm.$set(_vm.obj, "email", $$v)
-                  },
-                  expression: "obj.email",
-                },
-              }),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "password flex_1" },
-            [
-              _c("el-input", {
-                attrs: { placeholder: "Password" },
-                model: {
-                  value: _vm.obj.password,
-                  callback: function ($$v) {
-                    _vm.$set(_vm.obj, "password", $$v)
-                  },
-                  expression: "obj.password",
-                },
-              }),
-            ],
-            1
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "confirmBtn", on: { click: _vm.logIn } }, [
-          _c("button", { staticClass: "button-base w-full theme p-2" }, [
-            _vm._v("\n        Log In\n      "),
+        _c("div", { staticClass: "text-sm py-10" }, [
+          _c("p", { staticClass: "text-center" }, [
+            _vm._v("Please contact your admin."),
           ]),
         ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "confirmBtn flex justify-center",
+            on: { click: _vm.closeDialog },
+          },
+          [
+            _c("button", { staticClass: "button-base w-3/4 theme p-2" }, [
+              _vm._v("\n        Close\n      "),
+            ]),
+          ]
+        ),
       ]),
     ]
   )

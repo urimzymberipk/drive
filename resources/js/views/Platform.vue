@@ -164,17 +164,17 @@ export default {
         events.$on('mobile-menu:hide', () => (this.isScaledDown = false))
 
       this.$root.$on('openBlockChainPopup', (item) => {
-        if(this.getAuthenticatedUserDetails){
+        // if(this.getAuthenticatedUserDetails){
           this.selectedPdf = item
           this.showSaveToBlockChainDialog =  true
-        }else{
-          this.$notify({
-            title: 'Info',
-            type: 'info',
-            message: 'You need to login to perform this action!'
-          });
-          this.showEdBitLoginModal = true
-        }
+        // }else{
+        //   this.$notify({
+        //     title: 'Info',
+        //     type: 'info',
+        //     message: 'You need to login to perform this action!'
+        //   });
+        //   this.showEdBitLoginModal = true
+        // }
       })
     },
 }

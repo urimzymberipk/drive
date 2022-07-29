@@ -37,8 +37,14 @@ use Domain\Notifications\Controllers\MarkUserNotificationsAsReadController;
 use App\Users\Controllers\Authentication\DestroyActiveBearerTokenController;
 use App\Users\Controllers\Authentication\AuthenticateAndReturnBearerTokenController;
 
-Route::post('save-file-blockchain', [BlockchainController::class, 'saveFileBlockchain']);
-
+//blockchain
+Route::prefix('/blockchain')->group(function () {
+    Route::post('/login', [BlockchainController::class, 'loginToBlockchain']);
+    Route::middleware('auth-blockchain')->group(function () {
+        Route::get('/get-folders', [BlockchainController::class, 'getFolders']);
+        Route::post('/save-file-blockchain', [BlockchainController::class, 'saveFileBlockchain']);
+    });
+});
 
 // Ping Pong
 Route::get('/ping', PingAPIController::class);

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http;
 
+use Domain\Blockchain\Middleware\BlockchainLogin;
 use Fruitcake\Cors\HandleCors;
 use Support\Middleware\AdminCheck;
 use Support\Middleware\TrimStrings;
@@ -79,5 +80,7 @@ class Kernel extends HttpKernel
         'admin'            => AdminCheck::class,
         'setup-wizard'     => ProtectSetupWizardRoutes::class,
         'upload-request'   => ProtectUploadRequestRoutes::class,
+        'auth-blockchain'  => BlockchainLogin::class,
+
     ];
 }

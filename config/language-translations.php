@@ -625,7 +625,7 @@ return [
         'shared_link_email_subject'                      => '🙋 :user share some files with you. Look at it!',
         'shared_link_email_user'                         => ':user (:email) send you a link to shared files.',
         'shared_link_email_link'                         => 'Open your files',
-        'shared_link_email_salutation'                   => 'Regards, :app_name',
+        'shared_link_email_salutation'                   => 'Regards, FreeDrive',
         'hello'                                          => 'Hello!',
         'reset_password_subject'                         => 'Reset password for your account on ',
         'reset_password_line_1'                          => 'You are receiving this email because we received a password reset request for your account.',

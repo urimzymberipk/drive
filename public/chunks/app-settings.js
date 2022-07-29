@@ -116,6 +116,9 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         title: this.$t('server'),
         route: 'AppServer'
+      }, {
+        title: 'Blockchain login',
+        route: 'AppBlockchainSignIn'
       }]
     };
   },

@@ -394,6 +394,18 @@ const routesAdmin = [
                             title: 'Server',
                         },
                     },
+                    {
+                        name: 'AppBlockchainSignIn',
+                        path: '/admin/settings/user-sign-in',
+                        component: () =>
+                            import(
+                                /* webpackChunkName: "chunks/app-server" */ '../views/Admin/Settings/AppSettingsTabs/BlockchainLogin'
+                                ),
+                        meta: {
+                            requiresAuth: true,
+                            title: 'Server',
+                        },
+                    },
                 ],
             },
             {

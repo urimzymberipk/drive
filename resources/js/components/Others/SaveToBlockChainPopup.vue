@@ -61,9 +61,11 @@
 
 <script>
 import {mapGetters} from 'vuex'
-import ThumbnailItem from '../UI/Entries/ThumbnailItem'
+// import ThumbnailItem from './ThumbnailItem'
 import axios from 'axios'
-import Spinner from "../UI/Others/Spinner"
+import ThumbnailItem from "../UI/Entries/ThumbnailItem";
+import Spinner from "../UI/Others/Spinner";
+// import Spinner from "../FilesView/Spinner"
 
 export default {
   name: 'SaveToBlockChain',
@@ -101,17 +103,16 @@ export default {
     getData() {
       this.showSpinner = true
 
-      let foldersUrl = `https://api.edbit.io/dir/getFolders`;
+      let foldersUrl = `/api/blockchain/get-folders`;
       let headers = {
-        'Authorization': 'Bearer ' + this.getAuthenticatedUserDetails,
+        // 'Authorization': 'Bearer ' + this.getAuthenticatedUserDetails,
       }
       axios.get(foldersUrl, {headers}).then((res) => {
-        this.folders = res.data.folders
+        this.folders = res.data
       })
           .catch((error) => {
             this.$store.commit('SET_AUTHENTICATED_USER_DETAILS', null)
             this.$emit('closeDialogAndOpenEdBitLogin')
-
           })
           .finally(() => {
             this.showSpinner = false
@@ -128,7 +129,7 @@ export default {
         this.showSpinner = true
         this.showP = true
         let base_url = window.location.origin;
-        let url = base_url + '/api/save-file-blockchain'
+        let url = base_url + '/api/blockchain/save-file-blockchain'
 
         let payload = {
           type: this.selectedCertificate,
@@ -140,23 +141,16 @@ export default {
         }
 
         axios.post(url, payload, {headers}).then((res) => {
-          console.log(res.data)
-          console.log(this.entries)
+          this.$store.dispatch('getFolder', {page: 1, id:this.$route.params.id})
           this.showSpinner = false
           this.showDone = true
-          this.$store.dispatch('getFolder', {page: 1, id:this.$route.params.id})
-          // this.entries.find((item) => {
-          //   if (item.data.id === res.data.id) {
-          //     item.data = res.data
-          //   }
-          // })
         })
             .catch((error) => {
-              // this.$notify({
-              //   title: 'Error',
-              //   type: 'error',
-              //   message: error.data
-              // });
+              this.$notify({
+                title: 'Error',
+                type: 'error',
+                message: error.data
+              });
             })
             .finally(() => {
               this.showSpinner = false

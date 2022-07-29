@@ -49,6 +49,10 @@ export default {
                     title: this.$t('server'),
                     route: 'AppServer',
                 },
+                {
+                  title: 'Blockchain login',
+                  route: 'AppBlockchainSignIn',
+                },
             ],
         }
     },
